@@ -1,15 +1,18 @@
 package com.example.mvvmarchitecture.repository
 
+import com.example.mvvmarchitecture.api.MyApi
 import com.example.mvvmarchitecture.api.RetrofitInstance
 import com.example.mvvmarchitecture.model.MyData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MyRepository {
+open class MyRepository(
+    private val api: MyApi = RetrofitInstance.api
+) {
 
-    suspend fun getData(): List<MyData> {
+    open suspend fun getData(): List<MyData> {
         return withContext(Dispatchers.IO) {
-            RetrofitInstance.api.getData()
+            api.getData()
         }
     }
 }

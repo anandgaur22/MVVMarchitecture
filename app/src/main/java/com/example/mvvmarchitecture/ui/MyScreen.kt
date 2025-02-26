@@ -37,6 +37,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.ui.platform.testTag
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,12 +67,13 @@ fun MyScreen() {
         ) {
 
             if (isLoading) {
-                // Show loading indicator
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(
+                        modifier = Modifier.testTag("loading_indicator")
+                    )
                 }
             } else if (errorMessage != null) {
                 // Show error message
